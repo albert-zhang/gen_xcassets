@@ -18,13 +18,12 @@ This will scan the folder `pictures` recursively, and create assets catalog for 
 
 ## check_xcassets.py
 
-This is used to check the integrality of `*.xcassets`. If @3x images exist but missing @2x images, invoke `gen_xcassets.py` to fix it.
+This is used to check the integrality of `*.xcassets`. If @3x images exist but missing @2x images, invoke `gen_xcassets.py` to fix it. To make it work, add gen_xcassets.py to your $PATH.
 
-## behind the scenes
+## Behind the scenes
 
 The `gen_xcassets` actually call `sips` to scale @3x image to @2x size.
 
 ## Prerequisites
 
 - Python 2.7
-- Add gen_xcassets.py to your $PATH
