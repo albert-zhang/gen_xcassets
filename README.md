@@ -10,11 +10,11 @@ This will scan the folder `pictures` recursively, and create assets catalog for 
 
 ## Details
 
-- Put all @3x png files into a folder.
-- Name the png files, the name will used as the "code name" in your code.
-- call `gen_xcassets.py`.
-- The generated results are actually some folders which name ends with `.imageset`. That format is recorgnized by Xcode.
-- Drag the generated `imageset` folders to your `.xcassets` folder in your project. Xcode will know them.
+1. Put all @3x png files into a folder.
+2. Name the png files, the name will be used as the "code name" in your code.
+3. call `gen_xcassets.py`.
+4. The generated results are actually some folders which name ends with `.imageset`. That format is recorgnized by Xcode.
+5. Drag the generated `imageset` folders to your `.xcassets` folder in your project. Xcode will know them.
 
 ## check_xcassets.py
 
@@ -26,4 +26,5 @@ The `gen_xcassets` actually call `sips` to scale @3x image to @2x size.
 
 ## Prerequisites
 
-Python 2.7
+- Python 2.7
+- Add gen_xcassets.py to your $PATH
