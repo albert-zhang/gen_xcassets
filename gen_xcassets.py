@@ -118,6 +118,11 @@ def resizeImageViaSips(fp, w, h):
     subprocess.check_call(["sips", "-z", str(h), str(w), fp], stdout=fnull)
 
 
+def resizeImageViaConvert(fpsrc, fpdest, percent):
+    fnull = open(os.devnull, 'w')
+    subprocess.check_call(["convert", fpsrc, "-resize", str(percent) + "%", fpdest], stdout=fnull)
+
+
 def reducePNGViaPngquant(fp):
     fnull = open(os.devnull, 'w')
     subprocess.check_call(["pngquant", "--force", "--speed", "1", "--output", fp, fp], stdout=fnull)
@@ -138,13 +143,13 @@ def handlePNGFile(fp):
     out2xFileName = outBaseFileName +"2x.png"
     out3xFilePath = outDir +"/"+ out3xFileName
     out2xFilePath = outDir +"/"+ out2xFileName
-    
+
     shutil.copyfile(fp, out3xFilePath)
     
     orgSz = fileSize(out3xFilePath)
-    
+
     reducePNGViaPngquant(out3xFilePath)
-    
+
     fnlSz = fileSize(out3xFilePath)
     reducePerc = 100
     if orgSz != 0:
@@ -163,8 +168,10 @@ def handlePNGFile(fp):
         png2xW = 1
     if png2xH < 1:
         png2xH = 1
-    
-    resizeImageViaSips(out2xFilePath, png2xW, png2xH)
+
+    resizeImageViaConvert(out3xFilePath, out2xFilePath, 66.666)
+    # resizeImageViaSips(out2xFilePath, png2xW, png2xH)
+
     print "dimension: "+ str(png3xW) +":"+ str(png3xH) +" => " +str(png2xW) + ":"+ str(png2xH)
     
     JSONTemplate = '''{

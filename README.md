@@ -22,8 +22,10 @@ This is used to check the integrality of `*.xcassets`. If @3x images exist but m
 
 ## Behind the scenes
 
-The `gen_xcassets` actually call `sips` to scale @3x image to @2x size.
+The `gen_xcassets` actually call `pngquant` to compress the PNGs and call `convert` of `imagemagick` to scale @3x image to @2x size.
 
 ## Prerequisites
 
 - Python 2.7
+- `brew install pngquant`
+- `brew install imagemagick`
